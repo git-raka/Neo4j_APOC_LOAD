@@ -1,4 +1,7 @@
-## APOC LOAD CSV
+
+## LOAD FROM CSV TO NEO4J
+
+### APOC LOAD CSV
 ```
 LOAD CSV FROM "file:////data/cusinfo/cusinfo_202105_final.txt" AS row
 RETURN row LIMIT 5;
@@ -16,7 +19,7 @@ CALL apoc.periodic.iterate('
   MERGE (c:Customer {cif: row[0]}) SET c.buc = row[57]
 ', {batchSize:10000, parallel:true});
 ```
-### LOAD FROM GCS
+### LOAD FROM GCS TO NEO4J
 ```
 MERGE (e:Ecosystem {id: cpo}) SET e.name = 'Sawit', e.name_en = 'Palm Oil';
 
@@ -28,6 +31,7 @@ MERGE (c)-[:IN_ECOSYSTEM]->(e);
 ```
 
 ## LOAD FROM RDBMS
+
 ### LOAD INCREMENTAL FROM POSTGRESQL
 ```
 CALL apoc.load.jdbc ("jdbc:postgresql://192.168.1.103/northwind?user=postgres&password=mri123","orders") yield row 
@@ -49,7 +53,7 @@ p.order_date=datetime(row.orderdate),
 p.employee_id=toInteger(row.employeeid)
 ```
 
-## HIVE IMPALA
+## LOAD FROM HIVE IMPALA TO NEO4J
 
 ### IMPALA JDBC DEMO 
 ```
